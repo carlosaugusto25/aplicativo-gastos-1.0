@@ -10,6 +10,7 @@ import { Home } from './src/screens/Home';
 import { ThemeProvider } from 'styled-components';
 import theme from './src/theme';
 import { Loading } from './src/components/Loading';
+import { Register } from './src/screens/Register';
 
 export default function App() {
 
@@ -23,7 +24,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       {
-        fontsLoaded ? <Home /> : <Loading/>
+        fontsLoaded ? <Register /> : <Loading/>
       }
     </ThemeProvider>
   );
