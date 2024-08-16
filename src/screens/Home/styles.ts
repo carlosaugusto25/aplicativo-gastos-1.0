@@ -5,8 +5,13 @@ export const Container = styled.View`
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
     align-items: center;
     justify-content: center;
-    padding: 24px;
 `
+
+export const Content = styled.View`
+    flex:1;
+    width: 100%;
+    padding: 24px;
+`;
 
 export const ContentBanners = styled.View`
     flex-direction: row;
