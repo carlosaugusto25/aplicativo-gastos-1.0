@@ -11,7 +11,7 @@ import {
     Date
  } from "./styles";
 
-interface TransactionCardProps {
+export interface TransactionCardProps {
     name: string;
     type: CardTypes;
     value: string;
