@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components/native";
 
+export type ButtonProps = {
+    type: "up" | "down"
+}
+
 export const Container = styled.View`
     flex: 1;
     justify-content: center;
@@ -41,13 +45,13 @@ export const Title = styled.Text`
 
 
 
-export const Button = styled.TouchableOpacity`
+export const Button = styled.TouchableOpacity<ButtonProps>`
     width: 100%;
     padding: 16px;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    background-color: ${({ theme }) => theme.COLORS.PRIMARY};
+    background-color: ${({ theme, type }) => type === 'up' ? theme.COLORS.PRIMARY : theme.COLORS.DOWN};
 `;
 
 export const ButtonTitle = styled.Text`
