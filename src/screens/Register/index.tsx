@@ -14,12 +14,22 @@ import {
 } from "./styles";
 import { Input } from "../../components/Input";
 import { CategorySelectButton } from "../../components/CategorySelectButton";
-import { Keyboard, Modal } from "react-native";
+import { Alert, Keyboard, Modal } from "react-native";
 import { SelectModal } from "../SelectModal";
 import { FieldValues, useForm } from "react-hook-form";
 import { TouchableWithoutFeedback } from "react-native";
+import { api } from "../../service/api";
+import { format } from "date-fns";
 
 type TypeTransactions = "up" | "down";
+
+type DataType = {
+    name: string;
+    value: number;
+    type: TypeTransactions;
+    category?: string;
+    date: string;
+}
 
 export function Register() {
 
@@ -27,7 +37,17 @@ export function Register() {
     const [category, setCategory] = useState({ key: "categoria", name: "Selecione a categoria" });
     const [modalVisible, setModalVisible] = useState(false);
 
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, reset } = useForm();
+
+    async function handleCreateTransaction(data: DataType) {
+        await api.post('/transactions', data).then(response => {
+            console.log('response', response)
+            Alert.alert('Sucesso', 'Transação criada com sucesso')
+        }).catch(error => {
+            console.log('error', error)
+            Alert.alert('Ops', 'Não foi possível criar a transação')
+        })
+    }
 
     function handlePress(type: TypeTransactions) {
         setSelectType(type)
@@ -41,14 +61,35 @@ export function Register() {
         setModalVisible(false)
     }
 
+    function clear(){
+
+        setCategory({ key: "categoria", name: "Selecione a categoria" })
+        setSelectType("up")
+
+        reset({
+            name: '',
+            value: '',
+        })
+    }
+
     function handleRegister(form: FieldValues) {
+        
+        const currentDate = format(new Date(), 'dd/MM/yyyy')
+        
         const data = {
             name: form.name,
-            amount: form.amount,
-            transactionType: selectType,
-            category: category.key,
+            value: form.value,
+            type: selectType,
+            category: category.name,
+            date: currentDate
         }
-        console.log('data', data)
+
+        if(category.key !== "categoria") {
+            data.category = category.name
+        }
+
+        handleCreateTransaction(data)
+        clear()
     }
 
     return (

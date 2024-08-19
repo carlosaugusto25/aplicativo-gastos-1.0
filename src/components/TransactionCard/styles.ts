@@ -6,7 +6,7 @@ export type CardProp ={
     type: CardTypes
 }
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     width: 100%;
     justify-content: center;
     background-color: ${({ theme }) => theme.COLORS.LIGHT};

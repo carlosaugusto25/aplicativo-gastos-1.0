@@ -1,3 +1,4 @@
+import { TouchableOpacityProps } from "react-native";
 import { 
     Container, 
     CardTypes,
@@ -11,7 +12,7 @@ import {
     Date
  } from "./styles";
 
-export interface TransactionCardProps {
+export interface TransactionCardProps extends TouchableOpacityProps {
     name: string;
     type: CardTypes;
     value: string;
@@ -19,12 +20,12 @@ export interface TransactionCardProps {
     date: string;
 }
 
-export function TransactionCard({name, type, value, category, date}: TransactionCardProps) {
+export function TransactionCard({name, type, value, category, date, ...rest}: TransactionCardProps) {
     
     const typeName = type === 'up' ? 'Entrada' : 'Saída';
     
     return (
-        <Container>
+        <Container {...rest}>
             <ContentTop>
                 <Name>{name}</Name>
                 <Tag type={type}>
