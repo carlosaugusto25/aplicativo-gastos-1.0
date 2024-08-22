@@ -80,12 +80,12 @@ export function Register() {
             name: form.name,
             value: form.value,
             type: selectType,
-            category: category.name,
+            category: category.key,
             date: currentDate
         }
 
         if(category.key !== "categoria") {
-            data.category = category.name
+            data.category = category.key
         }
 
         handleCreateTransaction(data)

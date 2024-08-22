@@ -1,3 +1,4 @@
+import { isSameMonth, isSameYear, parse } from "date-fns";
 import { ListCardType } from "../screens/Home";
 
 export function formatedValue(value: number | string) {
@@ -20,4 +21,14 @@ export function getTotalForTypes(items:ListCardType[]){
         totalDown: formatedValue(totalDown),
         total: formatedValue(totalUp - totalDown)
     }
+}
+
+export function getTransactionsByMouth(transactions: ListCardType[], selectedDate: Date){
+    const value = transactions.filter(transaction => 
+        transaction.type == 'down' && 
+        isSameMonth(parse(transaction.date, "dd/MM/yyyy", new Date()), selectedDate) && 
+        isSameYear(parse(transaction.date, "dd/MM/yyyy", new Date()), selectedDate)
+    )
+
+    return value
 }
