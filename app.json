@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "mymoney",
+    "name": "Gastos",
     "slug": "mymoney",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "contain",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#00AD6C"
     },
     "ios": {
       "supportsTablet": true
@@ -17,14 +17,20 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#00AD6C"
+      },
+      "package": "com.carlosaugusto25.mymoney"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9be68d33-aaac-4227-85f8-e2b9d0b9c783"
+      }
+    }
   }
 }

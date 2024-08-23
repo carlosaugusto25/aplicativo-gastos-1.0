@@ -41,7 +41,6 @@ export function Register() {
 
     async function handleCreateTransaction(data: DataType) {
         await api.post('/transactions', data).then(response => {
-            console.log('response', response)
             Alert.alert('Sucesso', 'Transação criada com sucesso')
         }).catch(error => {
             console.log('error', error)

@@ -30,3 +30,6 @@ export default function App() {
   );
 }
 
+//eas build -p android --profile preview
+//"requireCommit": true = é o comando pra colocar no EAS JSON caso dê problema no build em ambiente windows
+
